@@ -1,29 +1,20 @@
-#include <iostream>
-#include <cstdio>
-using std::cin;
-using std::cout;
-using std::endl;
-
-
-int main()
+void expand(char *s, char *t)
 {
-	int width= 0;
-	cin>>width;
-	if (0==width%2 || width< 1 || width >80){
-		cout<<"error"<<endl;
-	}
-	else{
-		for (int i= 0; 2*i< width; ++i){
-			for (int j= 0; j< i; ++j){
-				cout<<' ';
-			}
-			for (int j= 0; j< width-2*i; ++j){
-				cout<<'*';
-			}
-
-			cout<<endl;
+	int j= 0;
+	for (int i= 0; s[i]!= '\0'; ++i){
+		switch(s[i]){
+			case '\n':
+				t[j++]= '\\';
+				t[j++]= 'n';
+				break;
+			case '\t':
+				t[j++]= '\\';
+				t[j++]= 't';
+				break;
+			default:
+				t[j++]= s[i];
+				break;
 		}
 	}
-
-	return 0;
+	t[j]= '\0';
 }
